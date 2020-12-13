@@ -18,13 +18,48 @@ public class StreamAppTest {
         int[] intArr = {-1, 0, 1, 2, 3};
         intStream = AsIntStream.of(intArr);
     }
-    
+
+    @Test
+    public void testAverage() {
+        double expResult = 1.0;
+        double result = intStream.average();
+        assertEquals(expResult, result, 0.01);
+    }
+
+    @Test
+    public void testSum() {
+        double expResult = 5;
+        double result = intStream.sum();
+        assertEquals(expResult, result, 0.01);
+    }
+
+    @Test
+    public void testCount() {
+        double expResult = 5;
+        double result = intStream.count();
+        assertEquals(expResult, result, 0.01);
+    }
+
+    @Test
+    public void testMax() {
+        Integer expResult = 3;
+        Integer result = intStream.max();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testMin() {
+        Integer expResult = -1;
+        Integer result = intStream.min();
+        assertEquals(expResult, result);
+    }
+
     @Test
     public void testStreamOperations() {
         System.out.println("streamOperations");
         int expResult = 42;
         int result = StreamApp.streamOperations(intStream);
-        assertEquals(expResult, result);        
+        assertEquals(expResult, result);
     }
 
     @Test
