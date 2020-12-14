@@ -10,8 +10,8 @@ public class AsIntStream implements IntStream {
 
     private AsIntStream(int... values) {
         this.generalArray = new ArrayList<>(values.length);
-        for (Integer value: values) {
-            this.generalArray.add(new Integer(value));
+        for (int value: values) {
+            this.generalArray.add(value);
         }
     }
 
@@ -33,7 +33,7 @@ public class AsIntStream implements IntStream {
     public Integer max() {
         checkIfEmpty(generalArray);
         double maxValue = Double.NEGATIVE_INFINITY;
-        for (Integer value: generalArray) {
+        for (int value: generalArray) {
             if (value > maxValue) {
                 maxValue = value;
             }
@@ -45,7 +45,7 @@ public class AsIntStream implements IntStream {
     public Integer min() {
         checkIfEmpty(generalArray);
         double minValue = Double.POSITIVE_INFINITY;
-        for (Integer value: generalArray) {
+        for (int value: generalArray) {
             if (value < minValue) {
                 minValue = value;
             }
@@ -63,7 +63,7 @@ public class AsIntStream implements IntStream {
     public Integer sum() {
         checkIfEmpty(generalArray);
         int resSum = 0;
-        for (Integer value: generalArray) {
+        for (int value: generalArray) {
             resSum += value;
         }
         return resSum;
@@ -73,7 +73,7 @@ public class AsIntStream implements IntStream {
     public IntStream filter(IntPredicate predicate) {
         checkIfEmpty(generalArray);
         ArrayList<Integer> resArr = new ArrayList<Integer>();
-        for (Integer value: this.generalArray) {
+        for (int value: this.generalArray) {
             if (predicate.test(value)) {
                 resArr.add(value);
             }
@@ -84,7 +84,7 @@ public class AsIntStream implements IntStream {
     @Override
     public void forEach(IntConsumer action) {
         checkIfEmpty(generalArray);
-        for (Integer value: this.generalArray) {
+        for (int value: this.generalArray) {
             action.accept(value);
         }
     }
@@ -93,7 +93,7 @@ public class AsIntStream implements IntStream {
     public IntStream map(IntUnaryOperator mapper) {
         checkIfEmpty(generalArray);
         ArrayList<Integer> resArr = new ArrayList<Integer>();
-        for (Integer value: generalArray) {
+        for (int value: generalArray) {
             resArr.add(mapper.apply(value));
         }
         return new AsIntStream(resArr);
@@ -103,7 +103,7 @@ public class AsIntStream implements IntStream {
     public IntStream flatMap(IntToIntStreamFunction func) {
         checkIfEmpty(generalArray);
         ArrayList<Integer> resArr = new ArrayList<Integer>();
-        for (Integer value: generalArray) {
+        for (int value: generalArray) {
             IntStream newStream = func.applyAsIntStream(value);
             int[] newStreamArr = newStream.toArray();
             for (int element: newStreamArr) {
@@ -117,7 +117,7 @@ public class AsIntStream implements IntStream {
     public int reduce(int identity, IntBinaryOperator op) {
         checkIfEmpty(generalArray);
         int res = identity;
-        for (Integer value: this.generalArray) {
+        for (int value: this.generalArray) {
             res = op.apply(res, value);
         }
         return res;
